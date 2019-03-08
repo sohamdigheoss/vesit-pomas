@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from profiles.views import HomeView,update_profile
+from profiles.views import HomeView,StudentSignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
-    path('register/',update_profile,name='register')
+    path('register/',StudentSignUpView.as_view(),name='register')
 ]
