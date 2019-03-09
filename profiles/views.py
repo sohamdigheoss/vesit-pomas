@@ -25,3 +25,4 @@ class StudentSignUpView(CreateView):
         user = form.save()
         login(self.request,user)
         return redirect('home')
+

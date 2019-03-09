@@ -9,5 +9,5 @@ class Project(models.Model):
         return self.name
     
 class ProjectGroup(models.Model):
-    project_id = models.ForeignKey(Project,primary_key=True,on_delete=models.DO_NOTHING)
-    group_id = models.ForeignKey(Group,on_delete=models.DO_NOTHING)
+    project_id = models.OneToOneField(Project,primary_key=True,on_delete=models.DO_NOTHING)
+    group_id = models.OneToOneField(Group,on_delete=models.DO_NOTHING)
