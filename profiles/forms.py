@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
@@ -89,6 +90,8 @@ class TeacherForm(UserCreationForm):
         user.phonenumber = self.cleaned_data['phone']
         user.set_password(self.cleaned_data["password1"])
         user.save()
+        new_group, created = Group.objects.get_or_create(name='teachers')
+        new_group.user_set.add(user)
         teacher = Teacher.objects.create(user=user)
         teacher.domain.add(*self.cleaned_data.get('domain'))
         return user
@@ -98,3 +101,22 @@ class StudentMultiForm(MultiModelForm):
         'user' : UserForm,
         'student' : StudentForm
     }
+
+
+class GroupCreateForm(forms.ModelForm):
+    user1 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
+    user2 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
+    user3 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
+    user4 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
+
+    class Meta:
+        model = Group
+        fields = ['name']
+
+    def save(self,):
+        new_group, created = Group.objects.get_or_create(name=self.cleaned_data['name'])
+        new_group.user_set.add(self.cleaned_data['user1'])
+        new_group.user_set.add(self.cleaned_data['user2'])
+        new_group.user_set.add(self.cleaned_data['user3'])
+        new_group.user_set.add(self.cleaned_data['user4'])
+        return new_group

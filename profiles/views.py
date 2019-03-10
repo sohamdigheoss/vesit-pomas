@@ -9,7 +9,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import TemplateView, CreateView
 from django.conf import settings
 
-from profiles.forms import StudentMultiForm, DomainForm, TeacherForm
+from profiles.forms import StudentMultiForm, DomainForm, TeacherForm, GroupCreateForm
 from profiles.models import Teacher, MyUser
 from profiles.tokens import account_activation_token
 
@@ -79,4 +79,10 @@ class TeacherSignUpView(CreateView):
 class DomainCreateView(CreateView):
     form_class = DomainForm
     template_name = 'profiles/form.html'
+    success_url = reverse_lazy('home')
+
+
+class GroupCreateView(CreateView):
+    form_class = GroupCreateForm
+    template_name = './profiles/form.html'
     success_url = reverse_lazy('home')
