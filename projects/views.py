@@ -28,7 +28,6 @@ def create(request):
         group = current_user_groups[0]
         name = request.POST['name']
         project = Project.objects.filter(group=group)
-        print(project)
         if (project.exists()):
             project = project[0]
             project.name = name

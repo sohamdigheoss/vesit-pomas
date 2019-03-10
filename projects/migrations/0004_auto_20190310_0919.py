@@ -8,24 +8,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0009_alter_user_last_name_max_length'),
-        ('projects', '0003_auto_20190309_1136'),
+        ('projects', '0001_initial'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='projectgroup',
-            name='group_id',
-        ),
-        migrations.RemoveField(
-            model_name='projectgroup',
-            name='project_id',
-        ),
         migrations.AddField(
             model_name='project',
             name='group_id',
             field=models.OneToOneField(default=None, on_delete=django.db.models.deletion.DO_NOTHING, to='auth.Group'),
-        ),
-        migrations.DeleteModel(
-            name='ProjectGroup',
         ),
     ]

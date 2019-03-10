@@ -20,12 +20,4 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=200)),
             ],
         ),
-        migrations.CreateModel(
-            name='ProjectGroup',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('group_id', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='auth.Group')),
-                ('project_id', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='projects.Project')),
-            ],
-        ),
     ]
