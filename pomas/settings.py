@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'phonenumber_field',
     'projects',
-    'reports'
+    'reports',
+    'betterforms'
 ]
 
 MIDDLEWARE = [
