@@ -34,7 +34,7 @@ class UserForm(UserCreationForm):
     def save(self,commit=True):
         user = super().save(commit=False)
         user.is_student = True
-        user.is_active = True
+        user.is_active = False
         user.first_name = self.cleaned_data['first_name']
         user.last_name  = self.cleaned_data['last_name']
         user.phonenumber = self.cleaned_data['phone']
@@ -83,7 +83,7 @@ class TeacherForm(UserCreationForm):
     def save(self,commit=True):
         user = super().save(commit=False)
         user.is_student = True
-        user.is_active = True
+        user.is_active = False
         user.first_name = self.cleaned_data['first_name']
         user.last_name  = self.cleaned_data['last_name']
         user.phonenumber = self.cleaned_data['phone']
@@ -98,14 +98,3 @@ class StudentMultiForm(MultiModelForm):
         'user' : UserForm,
         'student' : StudentForm
     }
-
-    @transaction.atomic
-    def save(self, commit=True):
-        objects = super(StudentMultiForm, self).save(commit=False)
-        if commit:
-            user = objects['user']
-            user.save()
-            student = objects['student']
-            student.user = user
-            student.save()
-        return objects
