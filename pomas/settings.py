@@ -123,3 +123,4 @@ AUTH_USER_MODEL='profiles.MyUser'
 
 STATIC_URL = '/static/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
