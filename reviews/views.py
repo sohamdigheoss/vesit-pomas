@@ -1,6 +1,32 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import Group
+from django.db.models import Avg,Count
+from django.http import HttpResponse
 from .models import Review
+from collections import defaultdict
+
+def groups(request):
+    current_user = request.user
+    if (current_user.is_teacher):
+        groups = Group.objects.all()
+        group_dict = defaultdict(list)
+        query_results = Review.objects.values('group_id','review_no').annotate(marks=Avg('marks')).order_by('group_id','review_no')
+        for query_result in query_results:
+            group = query_result['group_id']
+            review_no = query_result['review_no']
+            if (review_no == 2 and group not in group_dict):
+                group_dict[group].append(None)
+            group_dict[group].append(int(query_result['marks']))
+        for group in group_dict:
+            if (len(group_dict[group]) < 2):
+                group_dict[group].append(None)
+        context = {
+            'groups': group_dict.items()        
+        }
+        return render(request,'reviews/groups.html',context)
+    else:
+        return redirect('home')
+
 
 def reviews(request,group_id):
     current_user = request.user
@@ -16,9 +42,6 @@ def reviews(request,group_id):
         return redirect('home')
 
 
-
-
-# Create your views here.
 def create(request):
     current_user = request.user
     if (current_user.is_teacher):
@@ -38,6 +61,7 @@ def create(request):
             return render(request,'reviews/create.html')
     else:
         return redirect('home')
+
 
 def update(request):
     current_user = request.user

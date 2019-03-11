@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+	<div class="card-content">
+		<table>
+			<th>
+				<td>
+					Group No.
+				</td>
+				<td>
+					Review No. 1
+				</td>
+				<td>
+					Review No. 2
+				</td>
+			</th>
+			{% for group,marks in groups %}
+			<tr>
+				<td>
+					{{group}}
+				</td>
+				{% for mark in marks%}
+				<td>
+					{% if mark is not defined %}
+					{{mark}}
+					{% endif %}
+				</td>
+				{% endfor %}
+			</tr>
+		        {% endfor %}
+		</table>
+
+	</div>
+    </div>
+{% endblock %}
+

@@ -6,5 +6,6 @@ urlpatterns = [
     path(r'reviews/<group_id>',views.reviews,name='Reviews'),
     path(r'create/',views.create,name='Create'),
     path(r'update/',views.update,name='Update'),
-    path(r'delete/',views.delete,name='Delete')
+    path(r'delete/',views.delete,name='Delete'),
+    path(r'groups/',views.groups,name='Groups')
 ]
