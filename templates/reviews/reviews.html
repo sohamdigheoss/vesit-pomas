@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for review in reviews %}
+    <div class="card">
+	<div class="card-content">
+		<form action="/reviews/update/" method="POST">
+			{% csrf_token %}
+			<input name="id" value={{review.id}} hidden>
+			<p>Date/Time: {{review.created_at}}</p>
+			<p>Reviewer: {{review.reviewer}}</p>
+			<p>Review No.: {{review.review_no}}</p> <input type="number" name="review_no">
+			<p>Marks: {{review.marks}}</p> <input type="number" name="marks">
+
+			<button type="submit">Update Report</button>
+		</form>
+		<form action="/reviews/delete/" method="POST">
+                        {% csrf_token %}
+                        <input name="id" value={{review.id}} hidden>
+                        <button type="submit">Delete Report</button>
+                </form>
+
+	</div>
+    </div>
+  {% endfor %}
+{% endblock %}
+

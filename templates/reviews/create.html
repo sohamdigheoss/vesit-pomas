@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+	<div class="card-content">
+		<form method="POST" action=''>
+			{% csrf_token %}
+			Group ID: <input name="group_id" type="number">
+			Review No.: <input name="review_no" type="number">
+			Marks: <input name="marks" type="number">
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+    </div>
+{% endblock %}
+

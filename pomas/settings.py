@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'projects',
     'reports',
+    'reviews',
     'betterforms'
 ]
 

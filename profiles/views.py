@@ -61,6 +61,7 @@ def activate(request, uidb64, token):
         return render(request, './profiles/account_activation_invalid.html')
 
 
+
 class TeacherSignUpView(CreateView):
     form_class = TeacherForm
     template_name = 'profiles/form.html'
@@ -74,6 +75,7 @@ class TeacherSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
+
 
 class DomainCreateView(CreateView):
     form_class = DomainForm
