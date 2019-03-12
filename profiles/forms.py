@@ -72,7 +72,7 @@ class TeacherForm(UserCreationForm):
 
     class Meta:
         model = MyUser
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
