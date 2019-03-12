@@ -4,14 +4,20 @@
   {% for review in reviews %}
     <div class="card">
 	<div class="card-content">
-		<form action="/reviews/update/" method="POST">
-			{% csrf_token %}
-			<input name="id" value={{review.id}} hidden>
 			<p>Date/Time: {{review.created_at}}</p>
 			<p>Reviewer: {{review.reviewer}}</p>
-			<p>Review No.: {{review.review_no}}</p> <input type="number" name="review_no">
-			<p>Marks: {{review.marks}}</p> <input type="number" name="marks">
-
+			<p>Review No.: {{review.review_no}}</p>
+			<p>Marks: {{review.marks}}</p> 
+		<form class="review{{review.id}}" action="/reviews/update/" method="POST">
+			{% csrf_token %}
+			<input name="id" value={{review.id}} hidden>
+			<label class="form-control" for="review_no">Review No.</label>
+			<select class="form-control" name="review_no">
+				<option value=1>1</option>
+				<option value=2>2</option>
+			</select>
+			<label for="marks" class="form-control">Marks</label>
+			<input type="number" name="marks">
 			<button type="submit">Update Report</button>
 		</form>
 		<form action="/reviews/delete/" method="POST">
@@ -22,6 +28,13 @@
 
 	</div>
     </div>
+    <script>
+	function toggle(className, obj) {
+	    var $input = $(obj);
+	    if ($input.prop('checked')) $(className).hide();
+	    else $(className).show();
+	}
+    </script>
   {% endfor %}
 {% endblock %}
 
