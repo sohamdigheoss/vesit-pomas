@@ -4,13 +4,17 @@
   {% for report in reports %}
     <div class="card">
 	<div class="card-content">
-		<form action="/reports/update/" method="POST">
-			{% csrf_token %}
-			<input name="id" value={{report.id}} hidden>
-			<p>Date/Time: {{report.created_at}}</p>
-			<p>Rating: {{report.rating}}</p> <input type="number" name="rating">
-			<p>Remark: {{report.remark}}</p> <input type="text" name="remark">
-			<button type="submit">Update Report</button>
+		<p>Date/Time: {{report.created_at}}</p>
+		<p>Rating: {{report.rating}}</p>
+		<p>Remark: {{report.remark}}</p>
+		<form class="report{{report.id}}" action="/reports/update/" method="POST">
+                        {% csrf_token %}
+                        <input name="id" value={{report.id}} hidden>
+                        <label class="form-control" for="rating">Rating</label>
+                        <input type="number" name="rating">
+                        <label for="remark" class="form-control">Remark</label>
+                        <input type="text" name="remark">
+                        <button type="submit">Update Report</button>
 		</form>
 		<form action="/reports/delete/" method="POST">
 			{% csrf_token %}
