@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+from machina import get_apps as get_machina_apps
+from machina import MACHINA_MAIN_TEMPLATE_DIR,MACHINA_MAIN_STATIC_DIR
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,8 +43,11 @@ INSTALLED_APPS = [
     'projects',
     'reports',
     'reviews',
-    'betterforms'
-]
+    'betterforms',
+    'mptt',
+    'haystack',
+    'widget_tweaks'
+] + get_machina_apps()
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 ]
 
 ROOT_URLCONF = 'pomas.urls'
@@ -60,7 +65,9 @@ ROOT_URLCONF = 'pomas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 MACHINA_MAIN_TEMPLATE_DIR,
+                 ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -69,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'machina.core.context_processors.metadata',
             ],
         },
     },
@@ -137,5 +145,43 @@ AUTH_USER_MODEL='profiles.MyUser'
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    # ...
+    MACHINA_MAIN_STATIC_DIR,
+)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'machina_attachments': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp',
+    },
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            {'name': 'clipboard', 'items': ['Undo', 'Redo', ]},
+            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'Smiley',
+             'SpecialChar', 'PageBreak', ]},
+            {'name': 'styles', 'items': ['Styles', 'Format', ]},
+            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat', ]},
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'Outdent',
+             'Indent', '-', 'Blockquote', ]},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor', ]},
+            {'name': 'tools', 'items': ['Maximize', ]},
+        ],
+    }
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
