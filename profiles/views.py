@@ -9,11 +9,11 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import TemplateView, CreateView
 from django.conf import settings
 
-from profiles.forms import StudentMultiForm, DomainForm, TeacherForm
-from profiles.models import Teacher
+from profiles.forms import StudentMultiForm, DomainForm, TeacherForm, GroupCreateForm
+from profiles.models import Teacher, MyUser
 from profiles.tokens import account_activation_token
 
-User = settings.AUTH_USER_MODEL
+# User = settings.AUTH_USER_MODEL
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -33,7 +33,7 @@ class StudentSignUpView(CreateView):
         message = render_to_string('./profiles/account_activation_email.html', {
             'user': user,
             'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
             'token': account_activation_token.make_token(user),
         })
         user.email_user(subject, message)
@@ -48,8 +48,8 @@ def account_activation_sent(request):
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = MyUser.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError):
         user = None
 
     if user is not None and account_activation_token.check_token(   user, token):
@@ -80,4 +80,10 @@ class TeacherSignUpView(CreateView):
 class DomainCreateView(CreateView):
     form_class = DomainForm
     template_name = 'profiles/form.html'
+    success_url = reverse_lazy('home')
+
+
+class GroupCreateView(CreateView):
+    form_class = GroupCreateForm
+    template_name = './profiles/form.html'
     success_url = reverse_lazy('home')
