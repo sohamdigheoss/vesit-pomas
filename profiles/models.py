@@ -1,8 +1,6 @@
 from django.db import models, transaction
 from django.db.models.signals import post_save
-from django.contrib.auth.models import AbstractUser
-from django.conf import settings
-from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser, Group
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -36,5 +34,12 @@ class Student(models.Model):
     def __str__(self):
         return self.user.username
 
+
+class GroupData(models.Model):
+    group = models.OneToOneField(Group,on_delete=models.CASCADE,primary_key=True)
+    domain = models.ManyToManyField(Domain,related_name='primary_domain')
+
+    def __str__(self):
+        return self.group.name
 
 

@@ -7,7 +7,7 @@ from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from betterforms.multiform import MultiModelForm
 
-from profiles.models import MyUser, Domain, Student, Teacher
+from profiles.models import MyUser, Domain, Student, Teacher, GroupData
 
 User = get_user_model()
 
@@ -22,7 +22,7 @@ class UserForm(UserCreationForm):
 
     class Meta:
         model = MyUser
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('first_name', 'last_name', 'email')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -36,6 +36,7 @@ class UserForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_student = True
         user.is_active = False
+        user.username,_ = self.cleaned_data['email'].split('@')
         user.first_name = self.cleaned_data['first_name']
         user.last_name  = self.cleaned_data['last_name']
         user.phonenumber = self.cleaned_data['phone']
@@ -83,8 +84,9 @@ class TeacherForm(UserCreationForm):
     @transaction.atomic
     def save(self,commit=True):
         user = super().save(commit=False)
-        user.is_student = True
+        user.is_teacher = True
         user.is_active = False
+        user.username,_ = self.cleaned_data['email'].split('@')
         user.first_name = self.cleaned_data['first_name']
         user.last_name  = self.cleaned_data['last_name']
         user.phonenumber = self.cleaned_data['phone']
@@ -95,6 +97,7 @@ class TeacherForm(UserCreationForm):
         teacher = Teacher.objects.create(user=user)
         teacher.domain.add(*self.cleaned_data.get('domain'))
         return user
+
 
 class StudentMultiForm(MultiModelForm):
     form_classes = {
@@ -108,15 +111,35 @@ class GroupCreateForm(forms.ModelForm):
     user2 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
     user3 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
     user4 = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_student=True), empty_label="(Choose a User)")
-
+    domain = forms.ModelChoiceField(
+        queryset=Domain.objects.all(),
+        required=True,
+        empty_label="(Choose a Domain)"
+    )
     class Meta:
         model = Group
         fields = ['name']
 
-    def save(self,):
+    def save(self):
         new_group, created = Group.objects.get_or_create(name=self.cleaned_data['name'])
         new_group.user_set.add(self.cleaned_data['user1'])
         new_group.user_set.add(self.cleaned_data['user2'])
         new_group.user_set.add(self.cleaned_data['user3'])
         new_group.user_set.add(self.cleaned_data['user4'])
+        group=GroupData.objects.create(group=new_group)
+        group.domain.add(self.cleaned_data.get('domain'))
         return new_group
+
+
+# class AddMentorForm(forms.ModelForm):
+#     mentor = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_teacher=True), empty_label="(Choose a User)")
+#     name  = forms.ModelChoiceField(queryset=Group.objects.all(),empty_label='(choose group)')
+#
+#     class Meta:
+#         model=Group
+#         fields=['name']
+#
+#     def save(self):
+#         new_group,cleaned = Group.objects.get(name=self.cleaned_data['name'])
+#         new_group.user_set.add(self.cleaned_data['mentor'])
+#         return new_group
