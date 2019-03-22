@@ -23,13 +23,13 @@ from datetime import datetime
 
 def home(request):
     current_user = request.user
-    if (current_user.is_authenticated):
-        if (current_user.is_teacher):
-            return render(request,'reports/home.html')
-        else:
-            return redirect('home')
+    if (current_user.is_authenticated()):
+	if (current_user.is_teacher):
+	    return render('reports/home.html')
+	else:
+	    return redirect('home')
     else:
-        return redirect('home')
+	return redirect('home')
 
 
 def reports(request,group_id):
@@ -81,7 +81,7 @@ def delete(request):
         return redirect('reports/reports/'+str(group.id))
     else:
         return redirect('home')
-
+       
 
 def update(request):
     current_user = request.user
@@ -98,7 +98,7 @@ def update(request):
         return redirect('/reports/reports/'+str(group.id))
     else:
         return redirect('home')
-
+ 
 
 #def transcript_pdf(request,group_id):
 #    project_url = request.get_host()+'/reports/transcript/'+group_id

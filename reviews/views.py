@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from .models import Review
 from collections import defaultdict
 
+
 def groups(request):
     current_user = request.user
     if (current_user.is_teacher):
