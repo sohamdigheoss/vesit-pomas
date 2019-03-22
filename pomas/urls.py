@@ -28,6 +28,7 @@ from profiles.views import (
 )
 
 urlpatterns = [
+    path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('register/',StudentSignUpView.as_view(),name='register'),
