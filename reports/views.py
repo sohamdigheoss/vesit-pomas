@@ -32,10 +32,11 @@ def home(request):
         return redirect('home')
 
 
-def reports(request,group_id):
+
+def reports(request):
     current_user = request.user
     current_user_groups = request.user.groups.all()
-    group = Group.objects.get(id=group_id)
+    group = Group.objects.get(id=request.POST['group_id'])
     if (current_user.is_teacher and group in current_user_groups):
         reports = Report.objects.filter(group_id_id=group_id)
         context = {
