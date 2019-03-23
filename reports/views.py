@@ -38,7 +38,7 @@ def reports(request):
     current_user_groups = request.user.groups.all()
     group = Group.objects.get(id=request.POST['group_id'])
     if (current_user.is_teacher and group in current_user_groups):
-        reports = Report.objects.filter(group_id_id=group_id)
+        reports = Report.objects.filter(group_id_id=group.id)
         context = {
             'reports': reports
         }
