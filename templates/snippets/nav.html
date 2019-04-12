@@ -1,10 +1,71 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-<!-- Navbar -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">VESIT PROJECT MANAGEMENT</a>
+    </div>
+    {% if user.is_authenticated %}
+    {% if user.is_teacher %} 
+    <ul class="nav navbar-nav">
+    <li class="active"><a href="/reports">Reports</a></li>
+    </ul>
+    {% endif %} 
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="/forum">Forums</a></li>
+    </ul>
+   <!-- <a href="/forum" class="active">Forums</a>
+    <a class="active">Hey, {{user.username}}!</a>-->
+    <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><span class ="active"></span>Hey, {{user.username}}!</a>
+      <ul class="dropdown-menu">
+        <li class="active"><a href="/accounts/logout">Logout</a></li>
+      </ul>
+    </li>
+  
+    </ul>
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+      <ul class="dropdown-menu">
+          <li><a href="{% url 'register' %}">Student</a></li>
+          <li><a href="{% url 'register/teacher' %}">Teacher</a></li>
+      </ul>
+    </li>
+      <li><a href="/accounts/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+  
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!--
+
+
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="/" class="w3-bar-item w3-button w3-theme-l1">VESIT PROJECT MANAGEMENT</a>
+    <a href="/" class="w3-bar-item w3-button w3-theme-l1">VESIT PROJECT MANAGEMETN</a>
     {% if user.is_authenticated %}
     {% if user.is_teacher %}
     <a href="/reports" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Reports</a>
@@ -26,3 +87,4 @@
 </div>
 
 </div><hr/>
+-->

@@ -18,6 +18,9 @@ from django.urls import path, re_path,include
 from machina.app import board
 from profiles.views import (
     HomeView,
+    StudentView,
+    TeacherView,
+    GroupView,
     StudentSignUpView,
     DomainCreateView,
     TeacherSignUpView,
@@ -31,6 +34,9 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('accounts/login/student/', StudentView.as_view(), name='student'),
+    path('accounts/login/student/group/', GroupView.as_view(), name='Sgroup'),
+    path('accounts/login/teacher/', TeacherView.as_view(), name='teacher'),
     path('register/',StudentSignUpView.as_view(),name='register'),
     path('reports/',include('reports.urls')),
     path('projects/',include('projects.urls')),

@@ -186,6 +186,6 @@ CKEDITOR_CONFIGS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL='teacher/'
 
 LOGOUT_REDIRECT_URL='/'

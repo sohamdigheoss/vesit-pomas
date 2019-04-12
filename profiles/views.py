@@ -18,6 +18,15 @@ from profiles.tokens import account_activation_token
 class HomeView(TemplateView):
     template_name = "home.html"
 
+class StudentView(TemplateView):
+    template_name = "student.html"
+
+class GroupView(TemplateView):
+    template_name = "group.html"
+
+class TeacherView(TemplateView):
+    template_name = "teacher.html"
+
 
 class StudentSignUpView(CreateView):
     form_class = StudentMultiForm
@@ -56,7 +65,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect('home')
+        return redirect('student')
     else:
         return render(request, './profiles/account_activation_invalid.html')
 
