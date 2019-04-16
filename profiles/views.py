@@ -6,17 +6,16 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView, View
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, FormView
 from django.contrib.auth.models import Group
 
-from profiles.forms import StudentMultiForm, DomainForm, TeacherForm, GroupCreateForm #, AddMentorForm
+from profiles.forms import StudentMultiForm, DomainForm, TeacherForm, GroupCreateForm, AddMentorForm
 from profiles.models import Teacher, MyUser, GroupData, Domain
 from profiles.tokens import account_activation_token
 
 
 class HomeView(TemplateView):
-    template_name = "home.html"
+    template_name = "./index.html"
 
 
 class StudentSignUpView(CreateView):
@@ -111,18 +110,13 @@ class GroupCreateView(CreateView):
 #             i+=2
 #             j+=2
 
-# class AddMentorView(CreateView):
-#     model=Group
-#     form_class = AddMentorForm
-#     template_name = './profiles/form.html'
-#     # success_url = reverse_lazy('home')
-#
-#     def get_object(self, queryset=None):
-#         return get_object_or_404(Group, pk=id(form))
-#
-#     def post(self, request, *args, **kwargs):
-#         form = AddMentorForm( self.request.POST, instance=self.get_object())
-#
-#     def form_valid(self, form):
-#         profile = form.save()
-#         redirect('home')
+class AddMentorView(FormView):
+    template_name = './profiles/form.html'
+    form_class = AddMentorForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        usr=form.save()
+        return redirect('home')
+
+

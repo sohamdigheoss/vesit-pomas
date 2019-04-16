@@ -94,6 +94,8 @@ class TeacherForm(UserCreationForm):
         user.save()
         new_group, created = Group.objects.get_or_create(name='teachers')
         new_group.user_set.add(user)
+        # ne, created = Group.objects.get_or_create(name='multiple')
+        # ne.user_set.add(user)
         teacher = Teacher.objects.create(user=user)
         teacher.domain.add(*self.cleaned_data.get('domain'))
         return user
@@ -130,16 +132,12 @@ class GroupCreateForm(forms.ModelForm):
         group.domain.add(self.cleaned_data.get('domain'))
         return new_group
 
+class AddMentorForm(forms.Form):
+    mentor = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_teacher=True), empty_label="(Choose a User)")
+    name  = forms.ModelChoiceField(queryset=Group.objects.all(),empty_label='(choose group)')
 
-# class AddMentorForm(forms.ModelForm):
-#     mentor = forms.ModelChoiceField(queryset=MyUser.objects.filter(is_teacher=True), empty_label="(Choose a User)")
-#     name  = forms.ModelChoiceField(queryset=Group.objects.all(),empty_label='(choose group)')
-#
-#     class Meta:
-#         model=Group
-#         fields=['name']
-#
-#     def save(self):
-#         new_group,cleaned = Group.objects.get(name=self.cleaned_data['name'])
-#         new_group.user_set.add(self.cleaned_data['mentor'])
-#         return new_group
+    def save(self):
+        user = MyUser.objects.get(username__iexact=self.cleaned_data['mentor'])
+        new_group= Group.objects.get(name=self.cleaned_data['name'])
+        user.groups.add(new_group)
+        return user
