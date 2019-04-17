@@ -29,16 +29,20 @@ from profiles.views import (
 )
 
 urlpatterns = [
+    path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('register/',StudentSignUpView.as_view(),name='register'),
+    path('reports/',include('reports.urls')),
+    path('projects/',include('projects.urls')),
     path('register/student',StudentSignUpView.as_view(),name='register'),
     path('register/teacher',TeacherSignUpView.as_view(),name='register/teacher'),
     path('add/domain',DomainCreateView.as_view(),name='domain'),
     path('add/mentor',AddMentorView.as_view(),name='mentor'),
     path('add/group',GroupCreateView.as_view(),name='group'),
     path('account_activation_sent',account_activation_sent,name='account_activation_sent'),
-    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-            activate, name='activate'),
+    path('reviews/',include('reviews.urls')),
+    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate, name='activate'),
     path('forum/', include(board.urls))
 ]
 

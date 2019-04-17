@@ -1,6 +1,7 @@
 Babel==2.6.0
 Django==2.1.7
 django-betterforms==1.2
+django-extensions==2.1.6
 django-haystack==2.8.1
 django-js-asset==1.2.2
 django-machina==0.7.1

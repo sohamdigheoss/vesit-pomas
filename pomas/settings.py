@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
     'phonenumber_field',
+    'projects',
+    'reports',
+    'reviews',
     'betterforms',
     'mptt',
     'haystack',
@@ -87,12 +90,22 @@ WSGI_APPLICATION = 'pomas.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+   'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'pomas',
+#        'USER': 'phpadmin',
+#        'PASSWORD': '8UxYzQ!o',
+#        'HOST': 'localhost',
+#        'PORT': ''
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -128,6 +141,8 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL='profiles.MyUser'
+
+# APPEND_SLASH=False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -174,3 +189,7 @@ CKEDITOR_CONFIGS = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL='/'
+
+LOGOUT_REDIRECT_URL='/'

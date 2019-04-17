@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+	<div class="card-content">
+		<form method="POST" action=''>
+			{% csrf_token %}
+			Group ID: <input class="form-control" name="group_id" type="number">
+			Review No.: <select class="form-control" name="review_no">
+				<option value=1>1</option>
+				<option value=2>2</option>
+				</select>
+			Marks: <input class="form-control" name="marks" type="number">
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+    </div>
+{% endblock %}
+

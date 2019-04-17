@@ -60,6 +60,7 @@ def activate(request, uidb64, token):
         return render(request, './profiles/account_activation_invalid.html')
 
 
+
 class TeacherSignUpView(CreateView):
     form_class = TeacherForm
     template_name = 'profiles/form.html'
