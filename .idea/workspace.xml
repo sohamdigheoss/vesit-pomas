@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3099a4c2-5483-4642-a23c-476823e1f31c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/snippets/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/snippets/nav.html" afterDir="false" />
-    </list>
+    <list default="true" id="3099a4c2-5483-4642-a23c-476823e1f31c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +315,7 @@
       <workItem from="1555247391581" duration="8889000" />
       <workItem from="1555323208998" duration="12046000" />
       <workItem from="1555431968143" duration="6762000" />
-      <workItem from="1555481139855" duration="8792000" />
+      <workItem from="1555481139855" duration="9072000" />
     </task>
     <task id="LOCAL-00001" summary="init: do not add profile details along with user creation">
       <created>1551973927852</created>
@@ -428,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555481312665</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="bootstrap base extended">
+      <created>1555498751461</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1555498751461</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -437,7 +438,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138696000" />
+    <option name="totallyTimeSpent" value="138976000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -450,9 +451,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1374" height="736" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31363636" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31363636" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -466,7 +466,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3294702" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3178808" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3178808" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3294702" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32911393" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -520,6 +520,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="init: do not add profile details along with user creation" />
     <MESSAGE value="figure out the view issue" />
     <MESSAGE value="re-implemented extended user model and forms" />
@@ -531,7 +532,8 @@
     <MESSAGE value="SMALL FIXES" />
     <MESSAGE value="teacher asignment done" />
     <MESSAGE value="bootstrap base" />
-    <option name="LAST_COMMIT_MESSAGE" value="bootstrap base" />
+    <MESSAGE value="bootstrap base extended" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap base extended" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/profiles/apps.py">

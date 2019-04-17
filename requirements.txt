@@ -1,6 +1,9 @@
 Babel==2.6.0
 Django==2.1.7
+<<<<<<< HEAD
 django-betterforms==1.2
+=======
+>>>>>>> jaskaran
 django-haystack==2.8.1
 django-js-asset==1.2.2
 django-machina==0.7.1
@@ -10,4 +13,8 @@ django-widget-tweaks==1.4.3
 markdown2==2.3.7
 phonenumbers==8.10.6
 Pillow==5.4.1
+<<<<<<< HEAD
+=======
+pkg-resources==0.0.0
+>>>>>>> jaskaran
 pytz==2018.9
