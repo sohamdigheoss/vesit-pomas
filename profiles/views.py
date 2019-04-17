@@ -15,7 +15,7 @@ from profiles.tokens import account_activation_token
 
 
 class HomeView(TemplateView):
-    template_name = "./index.html"
+    template_name = "./home.html"
 
 
 class StudentSignUpView(CreateView):
