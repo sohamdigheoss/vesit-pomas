@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% for report in reports %}
-    <div class="card">
+	{% for report in reports %}
+	<div class="container">
+    <div class="card text-center">
 	<div class="card-content">
 		<p>Date/Time: {{report.created_at}}</p>
 		<p>Rating: {{report.rating}}</p>
@@ -22,7 +23,8 @@
 			<button type="submit">Delete Report</button>
 		</form>
 	</div>
-    </div>
+		</div>
+	</div>
   {% endfor %}
 {% endblock %}
 

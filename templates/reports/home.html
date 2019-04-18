@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="card">
+<br/>
+<div class="container">
+    <div class="card text-center">
 	<div class="card-content">
-		<a href="/reports/create">Create Report</a>
+		<h2>Reports</h2>
+		<a href="/reports/create" class="btn-primary">Create Report</a>
 		<form method="POST" action="/reports/reports/">
 			{% csrf_token %}
-			<label for="group_id">View Reports</label>
-			<input type="number" name="group_id">
-		<button type="submit">Submit</button>
+			<label for="group_id" class="form-control">View Reports</label>
+			<input type="number" name="group_id" class="form-control">
+		<button type="submit" class="btn-primary">Submit</button>
 		</form>
 	</div>
-    </div>
+	</div>
+</div>
 {% endblock %}
 

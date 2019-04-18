@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for report in reports %}
+    <div class="card">
+	<div class="card-content">
+		<p>Date/Time: {{report.created_at}}</p>
+		<p>Rating: {{report.rating}}</p>
+		<p>Remark: {{report.remark}}</p>
+	</div>
+    </div>
+  {% endfor %}
+{% endblock %}
+

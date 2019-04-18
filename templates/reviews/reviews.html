@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% for review in reviews %}
-    <div class="card">
+	{% for review in reviews %}
+	<div class="container">
+  	<div class="card text-center">
 	<div class="card-content">
 			<p>Date/Time: {{review.created_at}}</p>
 			<p>Reviewer: {{review.reviewer}}</p>
@@ -27,14 +28,15 @@
                 </form>
 
 	</div>
-    </div>
-    <script>
+		</div>
+	</div>
+  <script>
 	function toggle(className, obj) {
 	    var $input = $(obj);
 	    if ($input.prop('checked')) $(className).hide();
 	    else $(className).show();
 	}
-    </script>
+  </script>
   {% endfor %}
 {% endblock %}
 
