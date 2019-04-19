@@ -7,14 +7,25 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
     {% include 'snippets/css.html' %}
 </head>
 
-  <body>
+  <body class="skin-default-dark fixed-layout">
     {% include 'snippets/nav.html' %}
-    {% block content %}
-    {% endblock content %}
+    <div>
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+            </div>
+        </div>
+{#        <div id="main-wrapper">#}
+        <div class="page-wrapper">
+        <div class="container-fluid">
+        {% block content %}
+        {% endblock content %}
+        </div>
+    </div>
+
     {% include 'snippets/js.html' %}
   </body>
 </html>

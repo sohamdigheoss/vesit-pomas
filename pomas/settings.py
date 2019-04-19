@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
     'phonenumber_field',
+    'crispy_forms',
     'projects',
     'reports',
     'reviews',
@@ -193,3 +194,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL='/'
 
 LOGOUT_REDIRECT_URL='/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -2,22 +2,19 @@
 
 {% block content %}
 <br/>
-<div class="conatiner">
-    <div class="card text-center align-items-center">
+<br/>
+<br/>
+<br/>
+    <div class="card">
 	<div class="card-content">
-		<h2>Create Report</h2>
 		<form method="POST" action=''>
 			{% csrf_token %}
-			<div class="form-group">
-			Group ID: <input name="group_id" type="number" class="form-control"><br/></div>
-			<div class="form-group">
-			Rating: <input name="rating" type="number" class="form-control"><br/></div>
-			<div class="form-group">
-			Remark: <input name="remark" type="textfield" class="form-control"><br/></div>
-			<button type="submit" class="form-control">Submit</button>
+			Group ID: <input name="group_id" type="number">
+			Rating: <input name="rating" type="number">
+			Remark: <input name="remark" type="textfield">
+			<button type="submit">Submit</button>
 		</form>
 	</div>
-	</div>
-</div>
+    </div>
 {% endblock %}
 
