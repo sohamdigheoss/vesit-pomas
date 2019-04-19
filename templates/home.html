@@ -8,9 +8,18 @@
 <h2>VESIT-POMAS</h2>
 <h3>The VESIT Project Management System</h3>
 <div class="card-body text-center">
+{% if user.is_authenticated %}
+{% if user.is_student %}
+    <a href="/add/group" class="card-link">Add Group</a>
+{% else %}
+    <a href="/add/mentor" class="card-link">Add Mentor</a>
+{% endif %}
+    <a href="/add/domain" class="card-link">Add Domain</a>
+{% else %}
     <a href="/accounts/login" class="card-link">Login</a>
     <a href="/register/student" class="card-link">Student Registration</a>
     <a href="/register/teacher" class="card-link">Teacher Registration</a>
+{% endif %}
 </div>
 <img class="card-img-top" src="{% static 'assets/images/pomas-home.jpg' %}"></img>
 </div>
