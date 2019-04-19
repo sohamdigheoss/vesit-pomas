@@ -3,5 +3,16 @@
 {% block head_title %}Home{% endblock head_title %}
 
 {% block content %}
-
+<div class="container">
+<div class="card text-center">
+<h2>VESIT-POMAS</h2>
+<h3>The VESIT Project Management System</h3>
+<div class="card-body text-center">
+    <a href="/accounts/login" class="card-link">Login</a>
+    <a href="/register/student" class="card-link">Student Registration</a>
+    <a href="/register/teacher" class="card-link">Teacher Registration</a>
+</div>
+<img class="card-img-top" src="{% static 'assets/images/pomas-home.jpg' %}"></img>
+</div>
+</div>
 {% endblock  %}
