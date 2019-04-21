@@ -5,20 +5,23 @@
 {% block body %}
 <div class="container">
 <div class="card text-center">
-<h2>VESIT-POMAS</h2>
+
 <h3>The VESIT Project Management System</h3>
 <div class="card-body text-center">
 {% if user.is_authenticated %}
 {% if user.is_student %}
-    <a href="/add/group" class="card-link">Add Group</a>
-{% else %}
-    <a href="/add/mentor" class="card-link">Add Mentor</a>
+    <a href="/add/group" class="btn btn-success">Add Group</a>
+    <a href="/list" class="btn btn-success">View Groups</a>
+{% else%}
+    <a href="/list" class="btn btn-success">View Groups</a>
 {% endif %}
-    <a href="/add/domain" class="card-link">Add Domain</a>
+{% if user.is_superuser %}
+    <a href="/add/domain" class="btn btn-success">Add Domain</a>
+{% endif %}
 {% else %}
-    <a href="/accounts/login" class="card-link">Login</a>
-    <a href="/register/student" class="card-link">Student Registration</a>
-    <a href="/register/teacher" class="card-link">Teacher Registration</a>
+    <a href="/accounts/login" class="btn btn-success">Login</a>
+    <a href="/register/student" class="btn btn-success">Student Registration</a>
+    <a href="/register/teacher" class="btn btn-success">Teacher Registration</a>
 {% endif %}
 </div>
 <img class="card-img-top" src="{% static 'assets/images/pomas-home.jpg' %}"></img>

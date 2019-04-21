@@ -3,16 +3,31 @@
 
 {% block head_title %} Assignment List | {{ block.super}}{% endblock head_title %}
 {% block body %}
-<h1>Groups</h1>
-<ul>
-    {% for obj in object_list %}
-       <li>
-           {{obj.name}}
-            <br>
-           {% for res in result|disp:obj.name%}
-           {{res}}
-           {% endfor %}
-       </li>
-    {% endfor %}
-</ul>
+<h1>Group Allocated</h1>
+{% if user.is_student %}
+{% else %}
+<right><a href="/add/list" class="btn btn-success">View Reference List</a></right>
+{% endif %}
+<table style="width:100%">
+        <tr>
+                <th style="font-weight: bold;">Group Number</th>
+                <th style="font-weight: bold;">Group Name</th>
+                <th style="font-weight: bold;">Mentor Assigned</th>
+        </tr>
+
+        {% for obj in object_list %}
+        <tr>
+            <td>
+                {{obj.pk}}
+            </td>
+            <td>
+                    {{obj.name}}
+            </td>
+            <td>
+            {% for res in result|disp:obj.name%}
+            {{res}}
+            {% endfor %}
+            </td>
+        {% endfor %}
+</table> 
 {% endblock %}

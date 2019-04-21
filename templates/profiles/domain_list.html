@@ -3,19 +3,50 @@
 
 {% block head_title %} Assignment List | {{ block.super}}{% endblock head_title %}
 {% block body %}
-<h1>Groups</h1>
+<h1>Assignment Reference</h1>
+{% if user.is_superuser %}
+<a href="/add/Mentor" class="btn btn-success">Add Mentor</a>
+{% endif %}
 <ul>
-    {% for obj in object_list %}
-       <li>
-           {{obj.name}}
-            <br>
-           {% for res in result|teacher_domain:obj.name%}
-           {{res}}
-           {% endfor %}
-           {% for res1 in result1|group_domain:obj.name%}
-           {{res1}}
-           {% endfor %}           
-       </li>
-    {% endfor %}
-</ul>
+        {% for obj in object_list %}
+
+       <strong>
+           <font size="+2">
+                {{obj.name}}
+           </font>
+
+       </strong> 
+        <br>
+        <strong>Groups :</strong>
+        <div class="split left col-md-6 col-sm-3 col-xs-12">
+                        {% for res in result|group_domain:obj.name%}
+                        {{res}}
+                        <br>
+                        {% endfor %}    
+              </div>    
+              <strong>Mentor:</strong>    
+        <div class="split right col-md-6 col-sm-3 col-xs-12">
+                    {% for res in result|teacher_domain:obj.name%}
+                    {{res}}
+                    <br>
+                    {% endfor %}
+              </div>
+              {% endfor %}
+
+<!-- 
+              {% for obj in object_list %}
+              {{obj}}
+              <table style="width:100%">
+              <tr>
+                        {% for res in result|group_domain:obj.name%}
+                        <td>{{res}}</td>
+                        {% endfor %}
+                        {% for res in result|teacher_domain:obj.name%}
+                        <td>{{res}}</td>
+                        {% endfor %}
+                    </tr>
+              </table>
+              {% endfor %} -->
+            </ul>
+<br>
 {% endblock %}

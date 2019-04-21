@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'mptt',
     'haystack',
     'widget_tweaks',
-    'django_extensions'
+    'django_extensions',
+    'django_tables2'
 ] + get_machina_apps()
 
 MIDDLEWARE = [
