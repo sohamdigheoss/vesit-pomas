@@ -4,30 +4,54 @@
   {% for review in reviews %}
     <div class="card">
 	<div class="card-content text-center">
-			<p>Date/Time: {{review.created_at}}</p>
-			<p>Reviewer: {{review.reviewer}}</p>
-			<p>Review No.: {{review.review_no}}</p>
-			<p>Marks: {{review.marks}}</p> 
-		<form class="review{{review.id}}" action="/reviews/update/" method="POST">
-			{% csrf_token %}
-			<input name="id" value={{review.id}} hidden>
-			<div class="row justify-content-center">
-			<div class="form-group col-md-4">
-			<label class="form-control" for="review_no">Review No.</label>
-			<select class="form-control" name="review_no">
-				<option value=1>1</option>
-				<option value=2>2</option>
-			</select>
-			</div>
-			</div>
-			<div class="row justify-content-center">
-			<div class="form-group col-md-4">
-			<label for="marks" class="form-control">Marks</label>
-			<input type="number" name="marks">
-			</div>
-			</div>
-			<button type="submit">Update Report</button>
-		</form>
+		<table class="table">
+		<tr>
+			<th>Date/Time: </th>
+			<th>Reviewer</th>
+			<th>Review No.</th>
+			<th>Engineering Concepts & Knowledge</th>
+			<th>Interpretation of Problem & Analysis</th>
+			<th>Design/Prototype</th>
+			<th>Interpretation of Data & Dataset</th>
+			<th>Modern Tool Usage</th>
+			<th>Social Benefit, Safety Consideration</th>
+			<th>Environment friendly</th>
+		</tr>
+		<tr>
+			<td>{{review.created_at}}</td>
+			<td>{{review.reviewer}}</td>
+			<td>{{review.review_no}}</td>
+			<td>{{review.rubric1}}</td>
+			<td>{{review.rubric2}}</td>
+			<td>{{review.rubric3}}</td>
+			<td>{{review.rubric4}}</td>
+			<td>{{review.rubric5}}</td>
+			<td>{{review.rubric6}}</td>
+			<td>{{review.rubric7}}</td>
+		</tr>
+		</table>
+		<table class="table">
+		<tr>
+			<th>Ethics</th>
+			<th>Team work</th>
+			<th>Presentation skills</th>
+			<th>Applied Engg & Mgmt principles</th>
+			<th>Life long learning</th>
+			<th>Professional skills</th>
+			<th>Innovative approach</th>
+			<th>Marks</th> 
+		</tr>
+		<tr>
+			<td>{{review.rubric8}}</td>
+			<td>{{review.rubric9}}</td>
+			<td>{{review.rubric10}}</td>
+			<td>{{review.rubric11}}</td>
+			<td>{{review.rubric12}}</td>
+			<td>{{review.rubric13}}</td>
+			<td>{{review.rubric14}}</td>
+			<td>{{review.marks}}</td> 
+		</tr>
+		</table>
 		<form action="/reviews/delete/" method="POST">
                         {% csrf_token %}
                         <input name="id" value={{review.id}} hidden>

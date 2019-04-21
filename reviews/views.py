@@ -51,9 +51,9 @@ def create(request):
             group = Group.objects.filter(id=group_id)
             if (group.exists()):
                 group = group[0]
-                marks = request.POST['marks']
                 review_no = request.POST['review_no']
-                review = Review(group=group,marks=marks,review_no=review_no,reviewer=current_user)
+                marks = (int(request.POST['rubric1']) + int(request.POST['rubric2']) + int(request.POST['rubric3']) + int(request.POST['rubric4']) + int(request.POST['rubric5']) + int(request.POST['rubric6']) + int(request.POST['rubric7']) + int(request.POST['rubric8']) + int(request.POST['rubric9']) + int(request.POST['rubric10']) + int(request.POST['rubric11']) + int(request.POST['rubric12']) + int(request.POST['rubric13']) + int(request.POST['rubric14']))
+                review = Review(group=group,marks=marks,reviewer=current_user,review_no=review_no, rubric1=request.POST['rubric1'],rubric2=request.POST['rubric2'],rubric3=request.POST['rubric3'],rubric4=request.POST['rubric4'],rubric5=request.POST['rubric5'],rubric6=request.POST['rubric6'],rubric7=request.POST['rubric7'],rubric8=request.POST['rubric8'],rubric9=request.POST['rubric9'],rubric10=request.POST['rubric10'],rubric11=request.POST['rubric11'],rubric12=request.POST['rubric12'],rubric13=request.POST['rubric13'],rubric14=request.POST['rubric14'])
                 review.save()
                 return render(request,'reviews/create.html')
             else:
