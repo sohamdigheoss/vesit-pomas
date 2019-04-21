@@ -8,6 +8,11 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
     {% include 'snippets/css.html' %}
+    {% block css %}
+    {% endblock css %}
+
+    {% block extra_css %}
+    {% endblock extra_css %}
 </head>
 
   <body class="skin-default-dark fixed-layout">
@@ -17,17 +22,24 @@
     <div>
         <div class="preloader">
             <div class="loader">
-                <div class="loader__figure"></div>
+                <div class="loader__figure">Loading..</div>
             </div>
         </div>
-        <div id="main-wrapper">
-        <div class="page-wrapper">
-        <div class="container-fluid">
-        {% block content %}
-        {% endblock content %}
+      <div id="main-wrapper">
+      <div class="page-wrapper">
+      <div class="container-fluid">
+
+    {% block body %}
+      {# The forum content will go in this 'body' block #}
+    {% endblock body %}
+
+          </div>
+          </div>
         </div>
-    </div>
-    </div>
-    {% include 'snippets/js.html' %}
+{% block js %}
+{% endblock js %}
+{% block extra_js %}
+{% endblock extra_js %}
+{% include 'snippets/js.html' %}
   </body>
 </html>

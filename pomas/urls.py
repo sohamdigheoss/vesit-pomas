@@ -25,13 +25,17 @@ from profiles.views import (
     account_activation_sent,
     activate,
     GroupCreateView,
-    AddMentorView
+    AddMentorView,
+    GeneralListView,
+    AdminListView
 )
 
 urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('list/', GeneralListView.as_view(), name='general-list'),
+    path('add/list/', AdminListView.as_view(), name='list'),
     path('register/',StudentSignUpView.as_view(),name='register'),
     path('reports/',include('reports.urls')),
     path('projects/',include('projects.urls')),

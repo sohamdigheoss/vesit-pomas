@@ -1,12 +1,13 @@
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
 from django.db import transaction
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView, FormView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, FormView, View
 from django.contrib.auth.models import Group
 
 from profiles.forms import StudentMultiForm, DomainForm, TeacherForm, GroupCreateForm, AddMentorForm
@@ -96,21 +97,20 @@ class GroupCreateView(CreateView):
     template_name = './profiles/form.html'
     success_url = reverse_lazy('home')
 
-# class AdminListView(ListView):
-#     template_name = ''
-#
-#     def get_queryset(self):
-#         q=Teacher.objects.
-#         qs1=Domain.objects.all()
-#         grp=[]
-#         i=0
-#         j=1
-#         for q in qs1:
-#             grp[i]=Teacher.objects.filter(domain__name=q)
-#             grp[j]=GroupData.objects.filter(domain__name=q)
-#             i+=2
-#             j+=2
+class GeneralListView(ListView):
+    template_name = '/templates/auth/group_list.html'
 
+    def get_queryset(self):
+        queryset = Group.objects.exclude(name='teachers')
+        return queryset
+
+class AdminListView(ListView):
+    template_name = '/templates/auth/admin_list.html'
+
+    def get_queryset(self):
+        queryset = Domain.objects.all()
+        return queryset
+    
 class AddMentorView(FormView):
     template_name = './profiles/form.html'
     form_class = AddMentorForm

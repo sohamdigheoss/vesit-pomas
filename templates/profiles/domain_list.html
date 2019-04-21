@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load app_filters %}
+
+{% block head_title %} Assignment List | {{ block.super}}{% endblock head_title %}
+{% block body %}
+<h1>Groups</h1>
+<ul>
+    {% for obj in object_list %}
+       <li>
+           {{obj.name}}
+            <br>
+           {% for res in result|teacher_domain:obj.name%}
+           {{res}}
+           {% endfor %}
+           {% for res1 in result1|group_domain:obj.name%}
+           {{res1}}
+           {% endfor %}           
+       </li>
+    {% endfor %}
+</ul>
+{% endblock %}

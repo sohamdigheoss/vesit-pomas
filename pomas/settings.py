@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MACHINA_BASE_TEMPLATE_NAME='base.html'
 
 # Application definition
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
+    'profiles.templatetags',
     'phonenumber_field',
     'crispy_forms',
     'projects',
@@ -68,6 +70,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                os.path.join(BASE_DIR, 'templates/machina'),
                  MACHINA_MAIN_TEMPLATE_DIR,
                  ]
         ,
