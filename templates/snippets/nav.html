@@ -13,9 +13,6 @@
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                         <img src="{% static 'assets/images/ves-logo.png' %}" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->    
-                         <img src="{% static 'assets/images/ves-logo.png' %}" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -58,12 +55,12 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="/" aria-expanded="false"><span class="hide-menu">Home</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="/forum" aria-expanded="false"><span class="hide-menu">Forums</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="/" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Home</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="/forum" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Forums</span></a></li>
 			{% if user.is_teacher %}
-                        <li> <a class="waves-effect waves-dark" href="/reports" aria-expanded="false"><span class="hide-menu">Reports</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="/reports" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Reports</span></a></li>
 			{% endif %}
-                        <li> <a class="waves-effect waves-dark" href="/accounts/logout" aria-expanded="false"><span class="hide-menu">Logout</span></a></li>
+                        <li> <a class="waves-effect waves-dark" href="/accounts/logout" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Logout</span></a></li>
 
                     </ul>
                 </nav>
