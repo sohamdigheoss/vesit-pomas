@@ -64,7 +64,7 @@ def activate(request, uidb64, token):
 
 class TeacherSignUpView(CreateView):
     form_class = TeacherForm
-    template_name = 'profiles/form.html'
+    template_name = 'profiles/form.1.html'
     model = Teacher
 
     def get_context_data(self, **kwargs):
@@ -88,13 +88,13 @@ class TeacherSignUpView(CreateView):
 
 class DomainCreateView(CreateView):
     form_class = DomainForm
-    template_name = 'profiles/form.html'
+    template_name = 'profiles/form.3.html'
     success_url = reverse_lazy('home')
 
 
 class GroupCreateView(CreateView):
     form_class = GroupCreateForm
-    template_name = './profiles/form.html'
+    template_name = './profiles/form.2.html'
     success_url = reverse_lazy('home')
 
 class GeneralListView(ListView):
@@ -112,7 +112,7 @@ class AdminListView(ListView):
         return queryset
     
 class AddMentorView(FormView):
-    template_name = './profiles/form.html'
+    template_name = './profiles/form.4.html'
     form_class = AddMentorForm
     success_url = reverse_lazy('home')
 

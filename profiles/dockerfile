@@ -1,0 +1,13 @@
+From python:3
+
+RUN apt-get install git
+
+RUN git clone https://github.com/sohamdigheoss/vesit-pomas
+
+WORKDIR /vesit-pomas
+RUN pip install virtualenv
+RUN ls -la > /vesitpomas/ls.out
+RUN pip3 install -r requirements.txt
+RUN python manage.py migrate
+
+CMD source myVenv/bin/activate && python manage.py runserver

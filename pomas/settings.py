@@ -26,7 +26,8 @@ SECRET_KEY = 'vkwe9d2xm*p(*#%mfvw^y!m*rr0mt48eez@dbo1bfp22897fn@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pomas.edu',
+                 'www.pomas.edu' ]
 
 MACHINA_BASE_TEMPLATE_NAME='base.html'
 
